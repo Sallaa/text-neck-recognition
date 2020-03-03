@@ -29,9 +29,11 @@ int numAxis = 6;
 int winSize = 100;// How many data points are saved in the data array and draw on the screen
 int counter = 0;
 
+
+//define thresholds
 float upDownThreshold = 3;
 float leftRightThreshold = 3;
-float rotation_Threshold = 2;// Define your own threshold
+float rotation_Threshold = 2;
 
 GPlot plotIMU[] = new GPlot[numAxis];
 long plotIMUIndex[] = new long[numAxis]; // Save the index for GPoints in GPlot 
@@ -85,6 +87,7 @@ void draw() {
   updataSerial();
   //draw_plot();
 }
+
 void updataSerial() {
   while (myPort.available() > 0) {
     myString = myPort.readStringUntil(10);    // '\n'(ASCII=10) every number end flag

@@ -35,7 +35,7 @@ int counter = 0;
 
 float upDownThreshold = 3;
 float leftRightThreshold = 3;
-float rotation_Threshold = 2;// Define your own threshold
+float rotation_Threshold = 2;
 
 GPlot plotIMU[] = new GPlot[numAxis];
 long plotIMUIndex[] = new long[numAxis]; // Save the index for GPoints in GPlot 
@@ -59,6 +59,8 @@ double[] featurelist = new double[numfeatures+1];// The last one is for the labl
 int numofTrainingSamples =10;
 int samplecounter = 0;
 String savingpath = "Data/savingData";
+
+
 //Save the data of the current window in multiple axis
 ArrayList<ArrayList> IMUDataArray = new ArrayList();
 ArrayList<ArrayList> IMUDataFilter = new ArrayList();
