@@ -49,24 +49,16 @@ public Classifier myclassifier ;
 BufferedWriter trainingfileWriter = null;
 static Instances mInstances;  // Save the training instances
 String[] classLabels= {
-"FingerSnap",
-"WatchTap",
-"Left",
-"Right",
-"Clap",
-"Front",
-"Back",
-"Up",
-"Bottom",
-"Wave",
-"Wrist Right",
-"Wrist Left"
+"straight",
+"bent",
+"straight_to_bent",
+"bent_to_straight"
 }; // The names of the class 
 int numfeatures = 24;
 double[] featurelist = new double[numfeatures+1];// The last one is for the lables
 int numofTrainingSamples =10;
 int samplecounter = 0;
-String savingpath = "/Users/valentin/Documents/Processing/GestureRecognitionWatchTrainingData/";
+String savingpath = "Data/savingData";
 //Save the data of the current window in multiple axis
 ArrayList<ArrayList> IMUDataArray = new ArrayList();
 ArrayList<ArrayList> IMUDataFilter = new ArrayList();
