@@ -45,24 +45,16 @@ public static FastVector attsResult; //put classlabels here
 BufferedWriter trainingfileWriter = null;
 static Instances mInstances;  // Save the training instances
 String[] classLabels= {
-"FingerSnap",
-"WatchTap",
-"Left",
-"Right",
-"Clap",
-"Front",
-"Back",
-"Up",
-"Bottom",
-"Wave",
-"Wrist Right",
-"Wrist Left"
+"straight",
+"bent",
+"straight_to_bent",
+"bent_to_straight"
 }; // The names of the class 
 int numfeatures = 24;
 double[] featurelist = new double[numfeatures+1];// The last one is for the lables
 int numofTrainingSamples = 240;
 int samplecounter = 0;
-String savingpath = "/Users/Valentin/Downloads/Save_TrainingData/";
+String savingpath = "Data/savingData";
 
 
 //Save the data of the current window in multiple axis
@@ -192,53 +184,22 @@ void analysisData(String myString) {
         
         samplecounter++;
         if (samplecounter<= 20) {
-          featurelist[24] = (double) attsResult.indexOf("FingerSnap"); 
-          System.out.println("Sample Counter:" + samplecounter +"  FingerSnap");
-          plotIMU[0].setTitleText("IMU Data FingerSnap: " + samplecounter);
+          featurelist[24] = (double) attsResult.indexOf("straight"); 
+          System.out.println("Sample Counter:" + samplecounter +"  straight");
+          plotIMU[0].setTitleText("IMU Data straight: " + samplecounter);
         } else if (samplecounter<= 40){
-          featurelist[24] = (double) attsResult.indexOf("WatchTap"); 
-          System.out.println("Sample Counter:" + samplecounter +"  WatchTap");
-          plotIMU[0].setTitleText("IMU Data WatchTap: " + samplecounter);
+          featurelist[24] = (double) attsResult.indexOf("bent"); 
+          System.out.println("Sample Counter:" + samplecounter +"  bent");
+          plotIMU[0].setTitleText("IMU Data bent: " + samplecounter);
         } else if (samplecounter<= 60){
-          featurelist[24] = (double) attsResult.indexOf("Left"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Left");
+          featurelist[24] = (double) attsResult.indexOf("straight_to_bent"); 
+          System.out.println("Sample Counter:" + samplecounter +"  straight_to_bent");
           plotIMU[0].setTitleText("IMU Data Left: " + samplecounter);
         } else if (samplecounter<= 80){
-          featurelist[24] = (double) attsResult.indexOf("Right"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Right");
-          plotIMU[0].setTitleText("IMU Data Right: " + samplecounter);
-        } else if (samplecounter<= 100){
-          featurelist[24] = (double) attsResult.indexOf("Clap"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Clap");
-          plotIMU[0].setTitleText("IMU Data Clap: " + samplecounter);
-        } else if (samplecounter<= 120){
-          featurelist[24] = (double) attsResult.indexOf("Front"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Front");
-          plotIMU[0].setTitleText("IMU Data Front: " + samplecounter);
-        } else if (samplecounter<= 140){
-          featurelist[24] = (double) attsResult.indexOf("Back"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Back");
-          plotIMU[0].setTitleText("IMU Data Back: " + samplecounter);
-        } else if (samplecounter<= 160){
-          featurelist[24] = (double) attsResult.indexOf("Up"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Up");
-          plotIMU[0].setTitleText("IMU Data Up: " + samplecounter);
-        } else if (samplecounter<= 180){
-          featurelist[24] = (double) attsResult.indexOf("Bottom"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Bottom");
-          plotIMU[0].setTitleText("IMU Data Bottom: " + samplecounter);
-        } else if (samplecounter<= 200){
-          featurelist[24] = (double) attsResult.indexOf("Wave"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Wave");
-          plotIMU[0].setTitleText("IMU Data Wave: " + samplecounter);
-        } else if (samplecounter<= 220){
-          featurelist[24] = (double) attsResult.indexOf("Wrist Right"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Wrist Right");
-          plotIMU[0].setTitleText("IMU Data Wrist Right: " + samplecounter);
-        } else if (samplecounter<= 240){
-          featurelist[24] = (double) attsResult.indexOf("Wrist Left"); 
-          System.out.println("Sample Counter:" + samplecounter +"  Wrist Left");
-          plotIMU[0].setTitleText("IMU Data Wrist Left: " + samplecounter);
+          featurelist[24] = (double) attsResult.indexOf("bent_to_straight"); 
+          System.out.println("Sample Counter:" + samplecounter +"  bent_to_straight");
+          plotIMU[0].setTitleText("IMU Data bent_to_straight: " + samplecounter);
+        }
         }
 
         //System.out.println(featurelist[0] +","+featurelist[1] +","+featurelist[2] +","+featurelist[3] +","+featurelist[4] +","+featurelist[5] +","+featurelist[6] +","+featurelist[7] +","+featurelist[8]);
