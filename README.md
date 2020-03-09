@@ -5,7 +5,7 @@
 - [SparkFun MPU 9250 Gyroscope Accelerometer](https://www.sparkfun.com/products/13762)
 
 ## Required Libraries
-- [Weka[(https://www.cs.waikato.ac.nz/~ml/)
+- [Weka](https://www.cs.waikato.ac.nz/~ml/)
 
 ## Data
 Data is divided between trainingData and savingData.
