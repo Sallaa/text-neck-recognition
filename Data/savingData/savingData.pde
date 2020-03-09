@@ -32,8 +32,8 @@ int counter = 0;
 
 //define thresholds
 float upDownThreshold = 3;
-float leftRightThreshold = 3;
-float rotation_Threshold = 2;
+float leftRightThreshold = 70;
+float rotation_Threshold = 70;
 
 GPlot plotIMU[] = new GPlot[numAxis];
 long plotIMUIndex[] = new long[numAxis]; // Save the index for GPoints in GPlot 
@@ -48,15 +48,15 @@ BufferedWriter trainingfileWriter = null;
 static Instances mInstances;  // Save the training instances
 String[] classLabels= {
 "straight",
-"bent",
-"straight_to_bent",
-"bent_to_straight"
+"forward",
+"straight_to_forward",
+"forward_to_straight"
 }; // The names of the class 
 int numfeatures = 24;
 double[] featurelist = new double[numfeatures+1];// The last one is for the lables
-int numofTrainingSamples = 240;
+int numofTrainingSamples = 40;
 int samplecounter = 0;
-String savingpath = "Data/savingData";
+String savingpath = "/Users/valentin/text-neck-recognition/Data/";
 
 
 //Save the data of the current window in multiple axis
@@ -146,7 +146,7 @@ void analysisData(String myString) {
     if (counter == 25) {
 
       //If the gyroscope x [3] is larger than 2, then save the feature vector generated from the curent window
-      if ( (getABSMax(IMUDataArray.get(3))> rotation_Threshold || getABSMax(IMUDataArray.get(1))> leftRightThreshold || getABSMax(IMUDataArray.get(2))> upDownThreshold)  && (currenttime-lastTimeTriggered) >2000) {
+      if ( (getABSMax(IMUDataArray.get(0))> rotation_Threshold || getABSMax(IMUDataArray.get(1))> leftRightThreshold || getABSMax(IMUDataArray.get(2))> upDownThreshold)  && (currenttime-lastTimeTriggered) >2000) {
         
         System.out.println("3" + IMUDataArray.get(3));
         System.out.println("2" + IMUDataArray.get(2));
@@ -191,18 +191,19 @@ void analysisData(String myString) {
           System.out.println("Sample Counter:" + samplecounter +"  straight");
           plotIMU[0].setTitleText("IMU Data straight: " + samplecounter);
         } else if (samplecounter<= 40){
-          featurelist[24] = (double) attsResult.indexOf("bent"); 
-          System.out.println("Sample Counter:" + samplecounter +"  bent");
-          plotIMU[0].setTitleText("IMU Data bent: " + samplecounter);
-        } else if (samplecounter<= 60){
-          featurelist[24] = (double) attsResult.indexOf("straight_to_bent"); 
-          System.out.println("Sample Counter:" + samplecounter +"  straight_to_bent");
-          plotIMU[0].setTitleText("IMU Data Left: " + samplecounter);
-        } else if (samplecounter<= 80){
-          featurelist[24] = (double) attsResult.indexOf("bent_to_straight"); 
-          System.out.println("Sample Counter:" + samplecounter +"  bent_to_straight");
-          plotIMU[0].setTitleText("IMU Data bent_to_straight: " + samplecounter);
+          featurelist[24] = (double) attsResult.indexOf("forward"); 
+          System.out.println("Sample Counter:" + samplecounter +"  forward");
+          plotIMU[0].setTitleText("IMU Data forward: " + samplecounter);
         }
+        //else if (samplecounter<= 60){
+        //  featurelist[24] = (double) attsResult.indexOf("straight_to_forward"); 
+        //  System.out.println("Sample Counter:" + samplecounter +"  straight_to_forward");
+        //  plotIMU[0].setTitleText("IMU Data Left: " + samplecounter);
+        //} else if (samplecounter<= 80){
+        //  featurelist[24] = (double) attsResult.indexOf("forward_to_straight"); 
+        //  System.out.println("Sample Counter:" + samplecounter +"  forward_to_straight");
+        //  plotIMU[0].setTitleText("IMU Data forward_to_straight: " + samplecounter);
+        //}
         }
 
         //System.out.println(featurelist[0] +","+featurelist[1] +","+featurelist[2] +","+featurelist[3] +","+featurelist[4] +","+featurelist[5] +","+featurelist[6] +","+featurelist[7] +","+featurelist[8]);
@@ -226,7 +227,6 @@ void analysisData(String myString) {
       }
     }
   }
-}
 
 // Initialization data display
 void plotInitialization() {

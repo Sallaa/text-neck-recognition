@@ -1,4 +1,3 @@
-
 import processing.serial.*;
 import grafica.*;
 import weka.classifiers.Classifier;
@@ -33,9 +32,9 @@ int numAxis = 6;
 int winSize = 100;// How many data points are saved in the data array and draw on the screen
 int counter = 0;
 
-float upDownThreshold = 3;
-float leftRightThreshold = 3;
-float rotation_Threshold = 2;
+float upDownThreshold = 0;
+float leftRightThreshold = 0;
+float rotation_Threshold = 0;
 
 GPlot plotIMU[] = new GPlot[numAxis];
 long plotIMUIndex[] = new long[numAxis]; // Save the index for GPoints in GPlot 
@@ -50,15 +49,15 @@ BufferedWriter trainingfileWriter = null;
 static Instances mInstances;  // Save the training instances
 String[] classLabels= {
 "straight",
-"bent",
-"straight_to_bent",
-"bent_to_straight"
+"forward",
+"straight_to_forward",
+"forward_to_straight"
 }; // The names of the class 
 int numfeatures = 24;
 double[] featurelist = new double[numfeatures+1];// The last one is for the lables
-int numofTrainingSamples =10;
+int numofTrainingSamples = 1;
 int samplecounter = 0;
-String savingpath = "Data/savingData";
+String savingpath = "/Users/valentin/text-neck-recognition/Data/";
 
 
 //Save the data of the current window in multiple axis
@@ -301,7 +300,7 @@ private void setupARFF(String folder, String[] mylabels) {
 
   try {
     //Load training file and train classifier     
-    BufferedReader reader = new BufferedReader(new FileReader(savingpath +"train5.arff"));
+    BufferedReader reader = new BufferedReader(new FileReader(savingpath +"data.arff"));
     mInstances  = new Instances(reader);
     reader.close();
     mInstances.setClassIndex(mInstances.numAttributes() - 1);
